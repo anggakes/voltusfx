@@ -28,11 +28,39 @@
 				<a href="index.html"><img src="<?= base_url() ?>assets/theme/main/images/voltus.png" alt="" /></a>		
 			</div>		
 			<ul>
-				<li class="selected"><a href="index.html"><span>Home</span></a></li>
-				<li><a href="about.html"><span>About Us</span></a></li>
-				<li><a href="services.html"><span>Products</span></a></li>
-				<li><a href="products.html"><span>Contact Us</span></a></li>
-				<li><a href="contact.html"><span>Log In</span></a></li>			
+			<?php
+			$li=array(array(
+					"href"=>base_url(),
+					"nama"=>'home',
+					"slug"=>''
+				),
+				array(
+					"href"=>base_url()."site/halaman/about",
+					"nama"=>'about us',
+					"slug"=>'about'
+				),
+				array(
+					"href"=>base_url()."site/halaman/product",
+					"nama"=>'products',
+					"slug"=>'product'
+				),
+				array(
+					"href"=>base_url()."site/halaman/contact",
+					"nama"=>'contact us',
+					"slug"=>'contact'
+				),
+				array(
+					"href"=>base_url()."auth/login/member",
+					"nama"=>'Login',
+					"slug"=>'login'
+				),
+
+			);
+			foreach($li as $menu){
+				$selectedpage= (@$slug==$menu['slug'])? "class='selected'":"";
+				echo "<li ".$selectedpage."><a href=".$menu['href']."><span>".$menu['nama']."</span></a></li>";
+			}	
+		?>		
 			</ul>
 	</div>
 	<div id="body">
