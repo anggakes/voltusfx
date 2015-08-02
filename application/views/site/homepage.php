@@ -88,12 +88,14 @@ Expert Advisor is often called Forex Robot can do some trades executed automatic
 
 
 		<div class='col-xs-3 row'>
-		<div class=" col-xs-12" style=''>
+
+		<div class="col-xs-12" style='margin-bottom:10px;'>
+
 <br><br>
 			<center>
-				<a href='#' class='btn btn-success' style='background:green' style="-webkit-box-shadow: 0px 0px 12px 2px rgba(50, 50, 50, 0.75);
+				<img src="<?= base_url()?>assets/images/1.png" style="" class='' /> <a href='#' class='btn btn-success' style='background:green' style="-webkit-box-shadow: 0px 0px 12px 2px rgba(50, 50, 50, 0.75);
 -moz-box-shadow:    0px 0px 12px 2px rgba(50, 50, 50, 0.75);
-box-shadow:         0px 0px 12px 2px rgba(50, 50, 50, 0.75);"><i class='fa fa-cart-plus'></i> Order Now</a>
+box-shadow:         0px 0px 12px 2px rgba(50, 50, 50, 0.75);"><i class='fa fa-cart-plus'></i>  Order Now</a>
 			</center>
 			<br><br><br>
 		</div>

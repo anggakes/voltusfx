@@ -19,7 +19,7 @@ if(isset($msg)):
 </div>
 <?php endif; ?>
 
-
+<div class='row'>
 <div class='col-xs-3'>
  <center>
   <br>
@@ -43,12 +43,14 @@ if(isset($msg)):
   
   <div class="form-group">
     <a href="<?= base_url()?>auth/forget_password" class='btn'> Lupa Password ?</a>
-    <button type="submit" class="btn btn-danger pull-right"><i class='fa fa-sign-in'></i> Masuk </button>
+    <button type="submit" class="btn btn-success pull-right"><i class='fa fa-sign-in'></i> Masuk </button>
     <a class='pull-right btn ' href="<?= base_url() ?>"><i class='fa fa-home'></i> </a>
 
   </div>
-  <div class='clearfix'></div>
   <br>
                           </form>
+  
 
+</div>
+<div class='clearfix'></div>
 </div>
