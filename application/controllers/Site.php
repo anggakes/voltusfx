@@ -23,12 +23,7 @@ class Site extends CI_Controller {
 	}
 
 	public function halaman($slug){
-
-
+		$data['slug']=$slug;
+		$this->template->load('site/template','site/'.$slug,$data);
 	}
-
-	public function contact(){
-
-	}
-
 }

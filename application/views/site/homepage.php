@@ -78,15 +78,7 @@ Expert Advisor is often called Forex Robot can do some trades executed automatic
 
 </div>
 </div>
-
-
-
-
-
 </div>	
-
-
-
 		<div class='col-xs-3 row'>
 
 		<div class="col-xs-12" style='margin-bottom:10px;'>
@@ -97,7 +89,6 @@ Expert Advisor is often called Forex Robot can do some trades executed automatic
 -moz-box-shadow:    0px 0px 12px 2px rgba(50, 50, 50, 0.75);
 box-shadow:         0px 0px 12px 2px rgba(50, 50, 50, 0.75);"><i class='fa fa-cart-plus'></i>  Order Now</a>
 			</center>
-			<br><br><br>
 		</div>
 		<div class="section col-xs-12">
 			<h3>News</h3>	
