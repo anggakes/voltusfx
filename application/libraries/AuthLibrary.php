@@ -22,7 +22,7 @@ class AuthLibrary {
                 $this->load->model($this->modelName);
                 $this->load->library('email');
 
-                $this->model = $this->$this->modelName;
+                $this->model = new $this->modelName;
         }
 
         /* 
@@ -86,7 +86,7 @@ class AuthLibrary {
 
                         return array(
                             "success" => true,
-                            "user"=> $this->model->getData($user->username);
+                            "user"=> $this->model->getData($user->username),
                             );
                     }
 

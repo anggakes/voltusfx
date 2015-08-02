@@ -17,6 +17,7 @@ class Auth extends CI_Controller {
 	    $this->load->database();
         $this->load->library('form_validation');
         $this->load->library('template');
+        $this->load->library('authlibrary');
         $this->load->library('session');
         $this->load->library('recaptcha1');
         //$this->load->library('user_model');
@@ -142,7 +143,7 @@ class Auth extends CI_Controller {
 
 	public function not_allowed(){
 		
-		$this->template->load('template/template_auth','auth/not_allowed');
+		$this->template->load('auth/template','auth/not_allowed');
 	}
 	
 	
@@ -178,7 +179,7 @@ class Auth extends CI_Controller {
 		if ($this->form_validation->run() == FALSE){
 
 				$data['status'] = "kirim_token";
-				$this->template->load('template/template_auth','auth/forget_password',$data);
+				$this->template->load('auth/template','auth/forget_password',$data);
 
 		}else{
 
@@ -186,10 +187,10 @@ class Auth extends CI_Controller {
 
 				if($this->authlibrary->set_forget_password($usernameOrEmail)){
 					$data['status'] = "sukses_kirim";
-					$this->template->load('template/template_auth','auth/forget_password',$data);
+					$this->template->load('auth/template','auth/forget_password',$data);
 				}else{
 					$data['status'] = "gagal_kirim";
-					$this->template->load('template/template_auth','auth/forget_password',$data);
+					$this->template->load('auth/template','auth/forget_password',$data);
 				}
 		}
 
@@ -223,7 +224,7 @@ class Auth extends CI_Controller {
 				$data['status'] = "proses";
 				$data['u'] = $u;
 				$data['k'] = $k;
-				$this->template->load('template/template_auth','auth/forget_password',$data);
+				$this->template->load('auth/template','auth/forget_password',$data);
 
 		}else{
 				

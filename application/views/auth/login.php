@@ -27,7 +27,7 @@ if(isset($msg)):
 </center>
 </div>
 <div class='col-xs-9'>
-    <form role="form" action="<?= base_url() ?>auth/login" method="post" class="col-sm-11" id='form-registrasi'>
+    <form role="form" action="<?= base_url('auth/login/'.$role) ?>" method="post" class="col-sm-11" id='form-registrasi'>
     <div class="form-group">
     <label for="exampleInputEmail1">Username atau Email</label> 
     <input type="text" name='usernameOrEmail' class="form-control" id="" placeholder="Username atau Email.." required>

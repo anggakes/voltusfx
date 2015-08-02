@@ -13,7 +13,7 @@ $development = array(
 /* Setting for development environtment */
 
 $production = array(
-	"BASE_URL"		=> "",
+	"BASE_URL"		=> "cisenterprise.co.id/ag/voltusfx",
 	"DB_HOST"		=> "localhost",
 	"DB_NAME"		=> "voltus",
 	"DB_USERNAME"	=> "angga",
@@ -23,6 +23,6 @@ $production = array(
 
 /* select the array variable that suit your environment */
 
-$env = $development;
+$env = $pr;
 
 
