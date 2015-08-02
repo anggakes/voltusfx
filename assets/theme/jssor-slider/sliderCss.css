@@ -1,0 +1,90 @@
+/*slider*/
+
+.slider-loading{
+	position: absolute; 
+	display: block; 
+	background: url(images/loading.gif) no-repeat center center;
+                    top: 0px; left: 0px; width: 100%; height: 100%;
+}
+
+.slider-outer{
+	position: relative; width: 100%;  overflow: hidden; 
+	background: url(images/bg-body.gif) repeat-x bottom center;height: 495px;
+}
+
+.slider-inner{
+	position: relative; left: 50%; width: 5000px; text-align: center; margin-left: -2500px; 	
+}
+
+.slider-container{
+	cursor: move; 
+	position: absolute; 
+	left: 0px; 
+	top: 0px; 
+	width: 980px;
+           height: 500px; overflow: hidden;
+}
+
+.slider-single{
+	position: absolute; 
+	width: 480px; 
+	height: 300px; 
+	top: 150px; 
+	left: 10px;
+                            text-align: left; 
+                            line-height: 1.8em; 
+                            font-size: 12px;
+}
+
+.slider-bold{
+	color:orange;
+	text-shadow: 1px 1px 1px #000;
+}
+
+.slider-image{
+	position: absolute; 
+	top: 23px; 
+	left: 480px; 
+	width: 453px; 
+	height: 472px;
+}
+
+.slider-caption{
+	display: block; 
+	line-height: 1em;
+	text-transform: uppercase; 
+	font-size: 52px;
+	color: #2a4f5e;	
+	text-shadow: 4px 4px 4px #aaa;
+	font-family: 'Roboto Slab', Arial;
+}
+
+.slider-text{
+	display: block; line-height: 2em; font-size: 12pt; 
+}
+
+/* jssor slider arrow navigator skin 07 css */
+                    /*
+                    .jssora07l                  (normal)
+                    .jssora07r                  (normal)
+                    .jssora07l:hover            (normal mouseover)
+                    .jssora07r:hover            (normal mouseover)
+                    .jssora07l.jssora07ldn      (mousedown)
+                    .jssora07r.jssora07rdn      (mousedown)
+                    */
+                    .jssora07l, .jssora07r {
+                        display: block;
+                        position: absolute;
+                        /* size of arrow element */
+                        width: 50px;
+                        height: 50px;
+                        cursor: pointer;
+                        background: url(images/a11.png) no-repeat;
+                        overflow: hidden;
+                    }
+                    .jssora07l { background-position: -5px -35px; }
+                    .jssora07r { background-position: -65px -35px; }
+                    .jssora07l:hover { background-position: -125px -35px; }
+                    .jssora07r:hover { background-position: -185px -35px; }
+                    .jssora07l.jssora07ldn { background-position: -245px -35px; }
+                    .jssora07r.jssora07rdn { background-position: -305px -35px; }
