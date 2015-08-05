@@ -12,10 +12,10 @@
     <?php endif; ?>
     
 <?php 
-if(isset($msg)):
+if(isset($message)):
 ?>
-<div class='alert alert-success'>
-<?= $msg ?>
+<div class='alert alert-<?= ($success=='true') ? 'success' : 'danger'?>'>
+<?= $message ?>
 </div>
 <?php endif; ?>
 

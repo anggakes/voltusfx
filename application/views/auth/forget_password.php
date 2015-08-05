@@ -74,7 +74,7 @@
 <center>
   Password anda sudah berhasil di ubah, silahkan login dengan password baru
 <h3>
-<a href='<?= base_url()."auth/login" ?>' class='btn btn-danger' >Login</a>
+<a href='<?= base_url()."auth/login/member" ?>' class='btn btn-danger' >Login</a>
 </h3>
 </center>
 <?php }elseif($status == "proses_gagal"){ ?>

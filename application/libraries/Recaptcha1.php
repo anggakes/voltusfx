@@ -345,4 +345,24 @@ class ReCaptcha1 {
 
           
     }
+
+    public function rule($response){
+        return array(
+                    'field' => 'recaptcha_response_field',
+                    'label' => 'Captcha',
+                    'rules' => array('required',
+                                        array(
+                                            'check_captcha',
+                                            function($str)use($response)
+                                            {   
+                                                if ($response['success']) {
+                                                    return true;
+                                                }else {
+                                                    return false;
+                                                }
+                                            }
+                                    )
+                                ),
+                    'errors' => array('check_captcha'=>'maaf captcha salah'));
+    }
 }

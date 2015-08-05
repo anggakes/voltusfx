@@ -6,7 +6,7 @@
 
 Pendaftaran berhasil silahkan login 
 <h3>
-<a href='<?= base_url()."auth/login" ?>' class='btn btn-danger' >Login</a>
+<a href='<?= base_url()."auth/login/member" ?>' class='btn btn-danger' >Login</a>
 </h3>
 Kemudian lakukan aktifasi akun <br><br>
 </center>

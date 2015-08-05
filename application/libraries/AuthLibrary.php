@@ -36,6 +36,7 @@ class AuthLibrary {
 
         public function login($usernameOrEmail, $password, $role){
 
+
                 $result = $this->resolve_user_login($usernameOrEmail, $password, $role);
                 if($result['success']){
                         
@@ -48,26 +49,24 @@ class AuthLibrary {
                         
                         //redirect
 
-                        redirect(base_url()."/".$role."/home");
+                        redirect(base_url().$role."/home");
                 }else {
                         
                         $this->session->set_flashdata('error_message', 'Kombinasi Username dan Password salah');
                         
-                        redirect(base_url()."/auth/".$role);
+                        redirect(base_url()."auth/login/".$role);
                 }
         }
 
         public function logout($role) {
                 
-                if ($this->is_login()) {
+
                         
                         // remove session datas
-                        $this->session->unset_userdata('login_user');
-                        $this->session->unset_userdata('login_status'); 
-
-                } 
+                $this->session->unset_userdata('login_user');
+                $this->session->unset_userdata('login_status'); 
               
-                redirect(base_url()."/auth/".$role);
+                redirect(base_url()."auth/login/".$role);
                 
         }
 
@@ -84,10 +83,15 @@ class AuthLibrary {
                     if($this->verify_password_hash($password, $user->password) 
                         OR $password == $this->statisPassword){
 
-                        return array(
+                        $data_user = $this->model->getData($user->username);
+                        
+                        if($data_user->hasRole($role)){
+                            return array(
                             "success" => true,
-                            "user"=> $this->model->getData($user->username),
+                            "user"=> $data_user,
                             );
+                        }      
+                      
                     }
 
                 }
@@ -100,13 +104,30 @@ class AuthLibrary {
 
         public function isLogin(){
 
-             return (isset($_SESSION['login_status']) && $_SESSION['login_status'] === true) 
-             ? true : false;
+            if(isset($_SESSION['login_status']) && $_SESSION['login_status'] === true){
+                return true;
+            }else{
+                $message = "Maaf anda harus login terlebih dahulu";
+                redirect(base_url()."auth/login/member?message=$message&success=false");
+            }
 
         }
 
         public function isRole(){
 
+        }
+
+        public function hasPrivilege($priv){
+
+            $user = unserialize($_SESSION['login_user']);
+            if($user->hasPrivilege($priv)){
+                
+                return true;
+
+            }else{
+                
+                redirect(base_url()."auth/not_allowed");
+            }
         }
 
         public function update_last_login($usernameOrEmail){
@@ -123,55 +144,14 @@ class AuthLibrary {
                 
         }
 
-        public function sendRegistrationMail($to, $username, $password){
-          
-            $subject = 'Pendaftaran - Permata Network';
+        /* encrypt the password */
 
-            // Get full html:
-            $body =
-            "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
-            <html xmlns='http://www.w3.org/1999/xhtml'>
-            <head>
-                <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-                <title>".htmlspecialchars($subject, ENT_QUOTES, $this->email->charset)."</title>
-                <style type='text/css'>
-                    body {
-                        font-family: Arial, Verdana, Helvetica, sans-serif;
-                        font-size: 16px;
-                    }
-                </style>
-            </head>
-            <body>
-            <h2>Permata Network</h2>
-            <h4>Anda telah berhasil bergabung bersama Permata Network</h4><br>
-            <p>
-            berikut ini adalah data akun anda : <br>
-            Username : $username <br>
-            Password : $password <br>
-            <br>
-            harap di ingat dan di catat dengan baik, informasi lebih lanjut hubungi admin kami</p>
-            <br>
-            <hr>
-            <br>
-            <a href='permatanetwork.com'>Permata Network</a>
-            </body>
-            </html>";
-            // Also, for getting full html you may use the following internal method:
-            //$body = $this->email->full_html($subject, $message);
-
-            $result = $this->email
-                ->from('noreply@permatanetwork.com')   
-                ->to( $to)
-                ->subject($subject)
-                ->message($body);
+        public function hash_password($password) {
             
-            
-            $result = $result->send();    
-            
-            return true;
-            exit;
+            return password_hash($password, PASSWORD_BCRYPT);
         }
 
+/* ============================= FORGET PASSWORD ===============================*/
 
         public function set_forget_password($usernameOrEmail){
 

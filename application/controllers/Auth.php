@@ -20,9 +20,19 @@ class Auth extends CI_Controller {
         $this->load->library('authlibrary');
         $this->load->library('session');
         $this->load->library('recaptcha1');
-        //$this->load->library('user_model');
+        $this->load->model('user_model');
 	   
 	}
+
+	public function tes(){
+
+		$this->load->model('user_model');
+		$r = new User_model();
+		$user = $r->getData(1,'id');
+
+		var_dump($user->hasPrivilage('edit_user'));
+	}
+
 
 	function accept_terms()
 	{
@@ -51,23 +61,7 @@ class Auth extends CI_Controller {
 		*/
 		$response = $this->recaptcha->verifyResponse($captcha_answer);
 		$rule = $this->user_model->rules();
-		$rule[] = array(
-	                'field' => 'recaptcha_response_field',
-	                'label' => 'Captcha',
-	                'rules' => array('required',
-	                					array(
-					                        'check_captcha',
-					                        function($str)use($response)
-					                        {	
-					                        	if ($response['success']) {
-												    return true;
-												}else {
-													return false;
-												}
-					                        }
-					                )
-	                			),
-	                'errors' => array('check_captcha'=>'maaf captcha salah'));
+		$rule[] = $this->recaptcha->rule($response);
 
 		$this->form_validation->set_rules('accept_terms_checkbox', '', 'callback_accept_terms');
 		$this->form_validation->set_rules($rule);
@@ -76,7 +70,7 @@ class Auth extends CI_Controller {
 		if ($this->form_validation->run() == FALSE){
 
 				$data['kode_referral'] = $this->uri->segment(3);
-				$this->template->load('template/template_auth','auth/register',$data);
+				$this->template->load('auth/template','auth/register',$data);
 
 		}else{
 
@@ -85,25 +79,30 @@ class Auth extends CI_Controller {
 					echo "terjadi error di server";
 				
 				}else{
-				/*
-					$this->authlibrary->sendRegistrationMail(
-						$this->input->post('member[email]'), 
-						$this->input->post('member[username]'), 
-						$this->input->post('member[password]'));
+				/*	
+					$this->load->library("sendregistrationmail");
+					$this->sendregistrationmail->send($email,$data);
 				*/
 					redirect(base_url()."auth/success");
 				}
 		}
+
 	}
 
 	public function success(){
 
-		$this->template->load('template/template_auth','auth/success');
+		$this->template->load('auth/template','auth/success');
 	}
 
-	public function login($role)
+	public function login($role=null)
 	{	
-		$data['msg'] = $this->input->get('msg');
+		//redirect ke login member jika role tidak di set
+		if(!isset($role)){
+            redirect(base_url()."auth/login/member");
+        }
+
+		$data['message'] = $this->input->get('message');
+		$data['success'] = $this->input->get('success');
 		$rules 		=  array(
 				array(
 	                'field' => 'usernameOrEmail',
@@ -135,9 +134,13 @@ class Auth extends CI_Controller {
 
 	} 
 
-	public function logout(){
+	public function logout($role=null){
+		
+		if(!isset($role)){
+            show_404();
+        }
 
-		$this->authlibrary->logout();
+		$this->authlibrary->logout($role);
 		
 	}
 
@@ -151,7 +154,7 @@ class Auth extends CI_Controller {
 
 		if($usernameOrRefcode != ''){
 			
-			$data = $this->db->query("SELECT members.status as status_member,members.username,members.code as codex, profile.* FROM members JOIN profile ON members.id = profile.id_member WHERE username = '$usernameOrRefcode' OR code = '$usernameOrRefcode' ")->row();
+			$data = $this->db->query("SELECT members.status as status_member, users.* FROM users JOIN members ON users.id = members.id_user WHERE users.username = '$username' ")->row();
 			if(count($data)>0){
 				$alamat_foto = ($data->foto != '') ? $data->foto : "default.png";
 				$data->foto = "<img src='".base_url()."foto_profil/$alamat_foto' class='img-circle' style='width:80px' />";

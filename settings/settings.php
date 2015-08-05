@@ -23,6 +23,6 @@ $production = array(
 
 /* select the array variable that suit your environment */
 
-$env = $pr;
+$env = $development;
 
 
