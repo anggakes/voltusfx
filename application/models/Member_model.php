@@ -33,5 +33,17 @@ class Member_model extends CI_Model
 
 	}
 
+	public function getData($id_user){
+
+		$model 		= new Member_model();
+
+		$data 	= $this->db->query("SELECT * FROM members WHERE id_user = '$id_user' ")->row();
+		
+		$model->dataMember = $data;
+
+		return $model;
+
+	}
+
 
 }

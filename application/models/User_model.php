@@ -71,7 +71,7 @@ class User_model extends CI_Model
 
 		if($this->hasRole('member')){
 
-			return $this->member_model->getData($this->userData->id);
+			return $this->member_model->getData($this->dataUser->id);
 		}
 
 		return false;
