@@ -34,6 +34,7 @@ class Member extends CI_Controller {
 		$crud->set_table('members');
 		$crud->set_relation('id_user', 'users', 'username');
 		$crud->set_relation('id_referral', 'users', 'username');
+		$crud->display_as('id_referral','referral')->display_as('id_user','username');
 		$crud->unset_operations();
 
 		$output = $crud->render();
@@ -49,6 +50,7 @@ class Member extends CI_Controller {
 
 		$crud->set_table('cancel');
 		$crud->set_relation('id_user', 'users', 'username');
+		$crud->display_as('id_referral','referral')->display_as('id_user','username');
 		$crud->unset_operations();
 
 		$output = $crud->render();
