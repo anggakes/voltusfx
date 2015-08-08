@@ -14,18 +14,21 @@
              <?php if($user->hasRole('member')){ ?>
                 
                 <li class="header">MEMBER MENU</li>
-                <li <?= active_menu($menu,"dashboard_admin") ?>>
+                <li class="<?= active_menu($menu,"dashboard_member") ?>">
                   <a href="../UI/general.html"><i class="fa  fa-dashboard"></i> Dashboard
                     
                   </a>
                 </li>
-                <li <?= active_menu($menu,"dashboard_admin") ?>>
+
+<?php // untuk member aktif 
+if($member->dataMember->status != "tidak aktif"){ 
+?> 
+                
+                <li class="<?= active_menu($menu,"dashboard_admin") ?>">
                   <a href="../UI/general.html"><i class="fa  fa-star"></i> Bonus
                     
                   </a>
                 </li>
-
-                <?php if($member->dataMember->status == "aktif"){ ?> 
                  <li class="treeview">
                     <a href="#">
                       <i class="fa fa-money"></i>
@@ -55,7 +58,7 @@
                   </a>
                 </li>
 
-                <?php } ?>     
+<?php } ?>     
               
              <?php } ?>
 

@@ -62,8 +62,8 @@ var RecaptchaOptions = {
   <div class="form-group">
     
     <label for="exampleInputPassword1">Username Referral</label>
-    <input  type="text" name='member[username_referral]' value = "<?= (isset($kode_referral))? $kode_referral : set_value('member[username_referral]')?>" class="form-control" id="usernameOrRefcode" placeholder=" Your Referral Username.. " required>
-    <div style='color:red'><?= form_error('member[username_referral]') ?></div>
+    <input  type="text" name='username_referral' value = "<?= (isset($kode_referral))? $kode_referral : set_value('username_referral')?>" class="form-control" id="usernameOrRefcode" placeholder=" Your Referral Username.. " required>
+    <div style='color:red'><?= form_error('username_referral') ?></div>
     <br>
     <div id='loading'> <center>loading</center></div>
     <div id='dataReferral' class='row'>

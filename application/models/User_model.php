@@ -103,6 +103,9 @@ class User_model extends CI_Model
 					$referral = $r->getData(
 							$this->input->post('username_referral')
 						);
+			// update waktu ajak referral;
+			$referral->updateLastReferralTime();
+			
 			$data_member['id_user'] 	= $id_user;
 			$data_member['id_referral']	= $referral->dataUser->id;
 			
@@ -118,6 +121,13 @@ class User_model extends CI_Model
 		return $this->db->trans_status();
 	}
 
+	public function updateLastReferralTime(){
+
+		$this->db->set("last_referral_date", date('Y-m-j H:i:s'));
+		$this->where("id", $this->dataUser->id);
+		return $this->update('users');
+		
+	}
 
 
 
@@ -153,7 +163,7 @@ class User_model extends CI_Model
                 
         	),
 	        array(
-	                'field' => 'member[username_referral]',
+	                'field' => 'username_referral',
 	                'label' => 'Username Referral',
 	                'rules' => array('required',
 					                array(

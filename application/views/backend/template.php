@@ -18,11 +18,11 @@
     <link href="<?= base_url() ?>assets/theme/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
   
     <!-- Theme style -->
-    <link href="<?= base_url() ?>assets/theme/backend/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+   
+    <link href="<?= base_url() ?>assets/theme/backend/css/_all-skins.min.css" rel="stylesheet" type="text/css" />
+     <link href="<?= base_url() ?>assets/theme/backend/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
-
-    <link href="<?= base_url() ?>assets/theme/backend/css/_all-skins.min.css" rel="stylesheet" type="text/css" />
 
    
      <!-- DATA TABLES 
@@ -75,7 +75,16 @@
           
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+              <?php if($user->hasRole('member')) { ?>
+              <li>
+                  <a href="#!" >eWallet : $<?= $member->getWallet() ?></a>
 
+              </li>
+              <li>
+                  <a href="#!" >Status : <span class='lbl'><?= strtoupper($member->dataMember->status) ?></span></a>
+
+              </li>
+              <?php } ?>
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -128,6 +137,16 @@
                   </li>
                 </ul>
               </li>
+               <style type="text/css">
+                .lbl{
+                  background:#ca195a !important;
+                  color: white;
+                  padding:5px ;
+                  border-radius: .25em;
+                  font-weight: bold;
+                }
+               </style>
+               
             <li>
                   <a href="<?= base_url('auth/logout/'.$user->dataRoles[0]->name) ?>" ><i class='fa fa-sign-out'></i> Log out</a>
 
@@ -188,7 +207,7 @@
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
-       <span class='pull-right'>email : <strong>info@permatanetwork.com</strong></span>
+       <span class='pull-right'>email : <strong>info@voltusfx.com</strong></span>
         <strong>Copyright &copy; 2015 <a href="#"></a>.</strong> All rights reserved.
       </footer>
       
@@ -221,9 +240,9 @@
     <script src='<?= base_url() ?>assets/theme/fastclick/fastclick.min.js'></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url() ?>assets/theme/backend/js/app.min.js" type="text/javascript"></script>    
-    <!-- Countdown 
-    <script type="text/javascript" src="<?= base_url() ?>theme/jquery-countdown/jquery.countdown.min.js"></script>
-    -->
+    <!-- Countdown -->
+    <script type="text/javascript" src="<?= base_url() ?>assets/theme/jquery-countdown/jquery.countdown.min.js"></script>
+    
 
     <script type="text/javascript">
 

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Payment extends CI_Controller {
 
 	/* 
 	* parameter model yang digunakan 
@@ -23,19 +23,23 @@ class Home extends CI_Controller {
 	   
 	}
 
-	public function index(){
+	//instant activation function
+	public function ia(){
 
-		$data['user'] = unserialize($_SESSION['login_user']); 
-		$data['member'] = $data['user']->getMember();
-		$data['registration_fee'] = $this->config_model->getData("registration_fee")->cnf_value;
-		$data['menu'] = "dashboard_member";
+		$user = unserialize($_SESSION['login_user']);
+		$member = $user->getMember();
 
-
-		if($data['member']->dataMember->status != "tidak aktif"){
-			$this->template->load('backend/template',"backend/member/dashboard/home", $data);	
+		if($member->activation()){
+			$msg = "You have successed your payment, now you are in trial period for ".$this->config_model->getData("trial_time")->cnf_value;
+			redirect(base_url("member/home?success=true&message=$msg"));
 		}else{
-			$this->template->load('backend/template',"backend/member/dashboard/inactive", $data);
+			echo "gagal";
 		}
-		
+
+	}
+
+	public function success(){
+
+
 	}
 }

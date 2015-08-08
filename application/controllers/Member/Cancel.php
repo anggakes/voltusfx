@@ -1,13 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Cancel extends CI_Controller {
 
 	/* 
 	* parameter model yang digunakan 
 	* dalam library Auth terdapat model
 	* members dan admins	
 	*/
-
+	public $user;
+	public $member;
 
 	public function __construct()
 	{
@@ -17,25 +18,28 @@ class Home extends CI_Controller {
         $this->load->library('session');
         $this->load->model("config_model");
 		
+		$this->user 	= unserialize($_SESSION['login_user']); 
+		$this->member 	= $this->user->getMember();
 
         $this->authlibrary->isLogin();
         $this->authlibrary->hasPrivilege("member_area");
-	   
+		$this->_cekTrial();
 	}
 
 	public function index(){
 
-		$data['user'] = unserialize($_SESSION['login_user']); 
-		$data['member'] = $data['user']->getMember();
-		$data['registration_fee'] = $this->config_model->getData("registration_fee")->cnf_value;
-		$data['menu'] = "dashboard_member";
+		echo "asasas";
 
-
-		if($data['member']->dataMember->status != "tidak aktif"){
-			$this->template->load('backend/template',"backend/member/dashboard/home", $data);	
-		}else{
-			$this->template->load('backend/template',"backend/member/dashboard/inactive", $data);
-		}
-		
 	}
+	
+
+	public function _cekTrial(){
+
+		if($this->member->dataMember->status != "trial"){
+			redirect(base_url("auth/not_allowed"));
+		}
+
+		return true;
+	}
+
 }
