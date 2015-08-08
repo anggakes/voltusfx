@@ -15,7 +15,7 @@
                 
                 <li class="header">MEMBER MENU</li>
                 <li class="<?= active_menu($menu,"dashboard_member") ?>">
-                  <a href="../UI/general.html"><i class="fa  fa-dashboard"></i> Dashboard
+                  <a href="<?= base_url(); ?>member/home"><i class="fa  fa-dashboard"></i> Dashboard
                     
                   </a>
                 </li>
@@ -36,11 +36,11 @@ if($member->dataMember->status != "tidak aktif"){
                       <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu" style="display: none;">
-                      <li <?= active_menu($menu,"dashboard_admin") ?>>
+                      <li class="<?= active_menu($menu,"dashboard_admin") ?>">
                           <a href="../UI/general.html"><i class="fa  fa-circle-o"></i> Request Withdraw
                           </a>
                       </li>
-                      <li <?= active_menu($menu,"dashboard_admin") ?>>
+                      <li class="<?= active_menu($menu,"dashboard_admin") ?>">
                           <a href="../UI/general.html"><i class="fa  fa-circle-o"></i> History Withdraw
                           </a>
                       </li>
@@ -71,25 +71,28 @@ if($member->dataMember->status != "tidak aktif"){
              <?php if($user->hasRole('admin')){ ?>
                 
                 <li class="header">ADMIN MENU</li>
-                <li <?= active_menu($menu,"dashboard_admin") ?>>
-                  <a href="../UI/general.html"><i class="fa  fa-dashboard"></i> Dashboard</a>
+                <li class="<?= active_menu($menu,"dashboard_admin") ?>">
+                  <a href="<?= base_url(); ?>admin/home"><i class="fa  fa-dashboard"></i> Dashboard</a>
                 </li>      
-               <li <?= active_menu($menu,"member_list") ?>>
-                  <a href="../UI/general.html"><i class="fa  fa-user"></i> Members List</a>
+               <li class="<?= active_menu($menu,"member_lists") ?>">
+                  <a href="<?= base_url(); ?>admin/member/lists"><i class="fa  fa-user"></i> Members List</a>
                 </li>
-                <li <?= active_menu($menu,"member_cancel") ?>>
-                  <a href="icons.html"><i class="fa fa-close"></i> Member Cancel</a>
+                <li class="<?= active_menu($menu,"member_cancel") ?>">
+                  <a href="<?= base_url(); ?>admin/member/cancel"><i class="fa fa-close"></i> Member Cancel</a>
                 </li>
-                <li <?= active_menu($menu,"withdraw_list") ?>>
+                <li class="<?= active_menu($menu,"withdraw_list") ?>">
                   <a href="../UI/general.html"><i class="fa  fa-money"></i> Withdraw List</a>
                 </li>
-                 <li <?= active_menu($menu,"news") ?>>
-                  <a href="../UI/general.html"><i class="fa  fa-newspaper-o"></i> News</a>
+                <li class="<?= active_menu($menu,"pages") ?>">
+                  <a href="<?= base_url(); ?>admin/contents/pages"><i class="fa  fa-columns"></i> Pages</a>
                 </li>
-                 <li <?= active_menu($menu,"announcement") ?>>
-                  <a href="../UI/general.html"><i class="fa  fa-bullhorn"></i> Announcement</a>
+                 <li class="<?= active_menu($menu,"news") ?>">
+                  <a href="<?= base_url(); ?>admin/contents/news"><i class="fa  fa-newspaper-o"></i> News</a>
+                </li>
+                 <li class="<?= active_menu($menu,"announcement") ?>">
+                  <a href="<?= base_url(); ?>admin/announcement"><i class="fa  fa-bullhorn"></i> Announcement</a>
                  </li>
-                 <li <?= active_menu($menu,"configuration") ?>>
+                 <li class="<?= active_menu($menu,"configuration") ?>">
                   <a href="../UI/general.html"><i class="fa  fa-gears"></i> Configuration</a>
                 </li>
 

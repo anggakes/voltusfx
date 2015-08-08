@@ -13,9 +13,9 @@ $development = array(
 /* Setting for development environtment */
 
 $production = array(
-	"BASE_URL"		=> "cisenterprise.co.id/ag/voltusfx",
+	"BASE_URL"		=> "http://cisenterprise.co.id/ag/voltusfx",
 	"DB_HOST"		=> "localhost",
-	"DB_NAME"		=> "voltus",
+	"DB_NAME"		=> "voltusfx_sys",
 	"DB_USERNAME"	=> "angga",
 	"DB_PASSWORD"	=> "xeWKUdZMe23CAxAX"
 );

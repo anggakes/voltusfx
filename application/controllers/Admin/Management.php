@@ -31,6 +31,8 @@ class Management extends CI_Controller {
 
 		$crud = $this->_master();
 		$crud->set_table('privileges');
+		$crud->unset_export();
+        $crud->unset_print();
 
 		$output = $crud->render();
 		$output->menu = "privileges_management";
