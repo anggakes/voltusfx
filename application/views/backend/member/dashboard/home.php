@@ -61,7 +61,7 @@ if(isset($message)):
               Trial time : <span class='label label-success clock'> <?= date('Y-m-j H:i:s',strtotime($member->dataMember->activation_at.'+ 14 days'));?></span> <br>
               
               On trial period you can cancel payment 
-              <a href="<?= base_url('member/cancel') ?>">here</a>.
+              <a href="<?= base_url('member/cancel/req?type=insert') ?>">here</a>.
             </div><!-- /.box-body -->
           </div>
 

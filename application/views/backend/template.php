@@ -1,7 +1,7 @@
 <?php 
 
   $user = unserialize($_SESSION['login_user']);
-
+  $member = $user->getMember();
 ?>
 
 <!DOCTYPE html>
