@@ -16,6 +16,8 @@ class Home extends CI_Controller {
         $this->load->library('authlibrary');
         $this->load->library('session');
         $this->load->model("config_model");
+        $this->load->model("cancel_model");
+        $this->load->model("trading_account_model");
 		
 
         $this->authlibrary->isLogin();
@@ -32,10 +34,19 @@ class Home extends CI_Controller {
 
 
 		if($data['member']->dataMember->status != "tidak aktif"){
+			
+			if($this->cancel_model->_sudahCancel($data['user']->dataUser->id) AND $data['member']->dataMember->status == "trial"){
+				
+				redirect(base_url("member/cancel"));
+			}
+
+			$data['trading'] = $this->trading_account_model->getData($data['user']->dataUser->id);
 			$this->template->load('backend/template',"backend/member/dashboard/home", $data);	
 		}else{
 			$this->template->load('backend/template',"backend/member/dashboard/inactive", $data);
 		}
 		
 	}
+
+	
 }

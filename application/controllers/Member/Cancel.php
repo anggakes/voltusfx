@@ -18,13 +18,14 @@ class Cancel extends CI_Controller {
         $this->load->library('authlibrary');
         $this->load->library('session');
         $this->load->model("config_model");
+        $this->load->model("cancel_model");
         $this->load->library("form_validation");
-		
-		$this->user 	= unserialize($_SESSION['login_user']); 
-		$this->member 	= $this->user->getMember();
 
         $this->authlibrary->isLogin();
         $this->authlibrary->hasPrivilege("member_area");
+
+        $this->user 	= unserialize($_SESSION['login_user']); 
+		$this->member 	= $this->user->getMember();
 		$this->_cekTrial();
 	}
 
@@ -35,8 +36,8 @@ class Cancel extends CI_Controller {
 		$data['user'] = unserialize($_SESSION['login_user']); 
 		$data['member'] = $data['user']->getMember();
 		
-		$data['cancel'] = $this->db->query("select * from cancel where id_user='".$data['user']->dataUser->id."'")->row();
-		$data['cancel_msg'] = $this->db->query("select * from cancel_msg where id_cancel='".$data['cancel']->id."'")->result();
+		$data['cancel'] = $this->cancel_model->getData($data['user']->dataUser->id);
+		$data['cancel_msg'] =$this->cancel_model->getMsg($data['cancel']->id);
 		$data['menu'] = "dashboard_member";
 		$data['type'] = "send_msg";
 		$this->template->load("backend/template","backend/member/cancel/cancel_history",$data);

@@ -57,11 +57,11 @@ class Bonus_passive {
         return array(
     			"id_referral"   => $referral->dataUser->id,
                 "id_user"       => $this->id_user,
-                "bonus_type"    => 4,
+                "bonus_type"    => "Bonus Passive",
                 "amount"        => $amount,
                 "created_at"    => date('Y-m-j H:i:s'),
                 "updated_at"    => date('Y-m-j H:i:s'),
-                "status"        => 0,
+                "status"        => "processed",
     		);
 
     }

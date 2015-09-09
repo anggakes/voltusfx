@@ -25,9 +25,9 @@
          folder instead of downloading all of them to reduce the load. -->
 
    
-     <!-- DATA TABLES 
-    <link href="<?= base_url() ?>theme/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
-    -->
+     <!-- DATA TABLES -->
+    <link href="<?= base_url() ?>assets/theme/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    
 
     <!-- jQuery 2.1.4 -->
     <script src="<?= base_url() ?>assets/theme/jQuery/jQuery-2.1.4.min.js"></script>
@@ -35,10 +35,10 @@
     <script src="<?= base_url() ?>assets/theme/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 
-     <!-- DATA TABES SCRIPT 
-    <script src="<?= base_url() ?>theme/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="<?= base_url() ?>theme/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
-    -->
+     <!-- DATA TABES SCRIPT -->
+    <script src="<?= base_url() ?>assets/theme/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="<?= base_url() ?>assets/theme/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    
  
   </head>
     <?php 
@@ -257,6 +257,7 @@
 
         /* refresh modal u can change the text with img */
         refreshModal("Loading..");
+
 
         // jika tombol dengan id proses di tekan. hanya boleh satu kali.
         $(".proses").one("click", function() {

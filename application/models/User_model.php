@@ -124,8 +124,8 @@ class User_model extends CI_Model
 	public function updateLastReferralTime(){
 
 		$this->db->set("last_referral_date", date('Y-m-j H:i:s'));
-		$this->where("id", $this->dataUser->id);
-		return $this->update('users');
+		$this->db->where("id", $this->dataUser->id);
+		return $this->db->update('members');
 		
 	}
 

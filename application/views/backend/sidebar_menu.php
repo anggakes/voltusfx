@@ -24,31 +24,31 @@
 if($member->dataMember->status != "tidak aktif"){ 
 ?> 
                 
-                <li class="<?= active_menu($menu,"dashboard_admin") ?>">
-                  <a href="../UI/general.html"><i class="fa  fa-star"></i> Bonus
+                <li class="<?= active_menu($menu,"bonus") ?>">
+                  <a href="<?= base_url(); ?>member/bonus"><i class="fa  fa-star"></i> Bonus
                     
                   </a>
                 </li>
-                 <li class="treeview">
+                 <li class="treeview <?= ($menu == 'request_withdraw' OR $menu == 'history_withdraw')? 'active':'' ?>">
                     <a href="#">
                       <i class="fa fa-money"></i>
                       <span>Withdraw</span>
                       <i class="fa fa-angle-left pull-right"></i>
                     </a>
-                    <ul class="treeview-menu" style="display: none;">
-                      <li class="<?= active_menu($menu,"dashboard_admin") ?>">
-                          <a href="../UI/general.html"><i class="fa  fa-circle-o"></i> Request Withdraw
+                    <ul class="treeview-menu" >
+                      <li class="<?= active_menu($menu,"request_withdraw") ?>">
+                          <a href="<?= base_url(); ?>member/withdraw/request"><i class="fa  fa-circle-o"></i> Request Withdraw
                           </a>
                       </li>
-                      <li class="<?= active_menu($menu,"dashboard_admin") ?>">
-                          <a href="../UI/general.html"><i class="fa  fa-circle-o"></i> History Withdraw
+                      <li class="<?= active_menu($menu,"history_withdraw") ?>">
+                          <a href="<?= base_url(); ?>member/withdraw/history"><i class="fa  fa-circle-o"></i> History Withdraw
                           </a>
                       </li>
                       
                     </ul>
                  </li>   
-                 <li <?= active_menu($menu,"dashboard_admin") ?>>
-                  <a href="../UI/general.html"><i class="fa  fa-sitemap"></i> Downline
+                 <li class="<?= active_menu($menu,"downline") ?>">
+                  <a href="<?= base_url(); ?>member/downline"><i class="fa  fa-sitemap"></i> Downline
                     
                   </a>
                 </li>

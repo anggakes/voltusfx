@@ -14,16 +14,17 @@ if(isset($message)):
 <div class='row'>
   <div class='col-md-6'>
   	<!-- Warning message -->
-  	
+<?php if(!$trading->isInsert()){?>
   	<div class='alert alert-danger alert-dismissable'> 
   		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
   		<h4><i class="icon fa fa-warning"></i> Alert!</h4>
   		<ul>
+        <?php if(!$trading->isInsert()){?>
   			<li>Data Trading Account belum diisi </li>
-  			<li>Data Trading Account belum diisi </li>
+        <?php } ?>
   		</ul>
   	</div>
-
+<?php } ?>
 <div class='marquee row' style='margin:10px 0px;background:white;padding:15px;'>
 
         <b><i class='fa fa-bullhorn'></i> Pengumuman : </b> <br><br><marquee class='col-md-12' style='font-size:10pt'>aksd
@@ -58,10 +59,12 @@ if(isset($message)):
           <div class="box">
            
             <div class="box-body" style="">
+              
               Trial time : <span class='label label-success clock'> <?= date('Y-m-j H:i:s',strtotime($member->dataMember->activation_at.'+ 14 days'));?></span> <br>
               
               On trial period you can cancel payment 
               <a href="<?= base_url('member/cancel/req?type=insert') ?>">here</a>.
+              
             </div><!-- /.box-body -->
           </div>
 

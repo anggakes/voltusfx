@@ -57,11 +57,11 @@ class Bonus_consistent {
         return array(
     			"id_referral"   => $referral->dataUser->id,
                 "id_user"       => $this->id_user,
-                "bonus_type"    => 3,
+                "bonus_type"    => "Bonus Consistent",
                 "amount"        => $amount,
                 "created_at"    => date('Y-m-j H:i:s'),
                 "updated_at"    => date('Y-m-j H:i:s'),
-                "status"        => 0,
+                "status"        => "processed",
     		);
 
     }
@@ -83,7 +83,7 @@ class Bonus_consistent {
         $referral = unserialize($this->referral);
         $member = $referral->getMember();
         $sql = "SELECT count(*) as banyak FROM members,users WHERE users.id = members.id_user AND id_referral = ? AND DATEDIFF(users.created_at,NOW())<=30";
-        $data = $this->db->query($sql,array($member->dataMember->id))->row();
+        $data = $this->db->query($sql,array($referral->dataUser->id))->row();
 
         return $data->banyak;
     }

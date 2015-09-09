@@ -82,7 +82,7 @@
 <hr>
 <?= $cm->msg ?>
 <hr>
-<div class='label label-danger'> Date : <?= $cm->created_at?></div>
+<div > <span class='label label-danger'>Date :</span> <?= $cm->created_at?></div>
 
 </div>
 <div class='clearfix'></div>
