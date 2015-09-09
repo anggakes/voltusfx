@@ -62,7 +62,7 @@ var RecaptchaOptions = {
   <div class="form-group">
     
     <label for="exampleInputPassword1">Username Referral</label>
-    <input  type="text" name='username_referral' value = "<?= (isset($kode_referral))? $kode_referral : set_value('username_referral')?>" class="form-control" id="usernameOrRefcode" placeholder=" Your Referral Username.. " required>
+    <input  type="text" name='username_referral' value = "<?= (isset($id))? $id : set_value('username_referral')?>" class="form-control" id="usernameOrRefcode" placeholder=" Your Referral Username.. " required>
     <div style='color:red'><?= form_error('username_referral') ?></div>
     <br>
     <div id='loading'> <center>loading</center></div>
@@ -193,21 +193,13 @@ $(document).ready(function(){
               var stat;
               var nama = "<b>Nama </b>         : "+data.nama+"<br>";
               var username = "<b>Username </b>     : "+data.username+"<br>";
-              var kode = "<b>kode Referral</b> : "+data.codex+"<br>";
               var foto = data.foto;
+              var status = "<b>Status</b> : "+data.status_member+"<br>";
 
-              if(data.status_member == 1){
-                stat = "Aktif";
-              }else{
-                stat = "Tidak Aktif";
-              }
-              var status = "<b>Status</b> : "+stat+"<br>";
-
-              var dataReferral = nama+username+kode+status;
+              var dataReferral = nama+username+status;
 
               $('#dataReferralProfile').html(dataReferral);
               $('#foto').html(foto);
-              $('#usernameOrRefcode').val(data.codex);
 
             }else{
               $('#dataReferral').hide();
@@ -221,7 +213,7 @@ $(document).ready(function(){
         
     }
 
-    <?= (isset($kode_referral)) ? "getReferral_code();" : '' ?>
+    <?= (isset($id)) ? "getReferral_code();" : '' ?>
 
 
     

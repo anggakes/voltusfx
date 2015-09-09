@@ -69,7 +69,7 @@ class Auth extends CI_Controller {
 		// Form validation 
 		if ($this->form_validation->run() == FALSE){
 
-				$data['kode_referral'] = $this->uri->segment(3);
+				$data['id'] = $this->uri->segment(3);
 				$this->template->load('auth/template','auth/register',$data);
 
 		}else{
@@ -154,7 +154,7 @@ class Auth extends CI_Controller {
 
 		if($usernameOrRefcode != ''){
 			
-			$data = $this->db->query("SELECT members.status as status_member, users.* FROM users JOIN members ON users.id = members.id_user WHERE users.username = '$username' ")->row();
+			$data = $this->db->query("SELECT members.status as status_member, users.* FROM users JOIN members ON users.id = members.id_user WHERE users.username = '$usernameOrRefcode' ")->row();
 			if(count($data)>0){
 				$alamat_foto = ($data->foto != '') ? $data->foto : "default.png";
 				$data->foto = "<img src='".base_url()."foto_profil/$alamat_foto' class='img-circle' style='width:80px' />";
